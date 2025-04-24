@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.14.1",
@@ -7,5 +8,11 @@
   },
   "scripts": {
     "tsc": "rm -rf dist && tsc"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.2",
+    "date-fns-tz": "^3.2.0",
+    "tyme4ts": "^1.3.0",
+    "zod": "^3.24.3"
   }
 }
