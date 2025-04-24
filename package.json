@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.1",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "tsc": "rm -rf dist && tsc"
+  }
+}
