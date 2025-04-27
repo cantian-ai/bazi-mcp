@@ -59,8 +59,13 @@ Node.js 22 or above.
 
 - gender: `Number`
 
-  > 性别。可选。0 - 女，1-男。  
-  > Gender. Optional. 0 for female, 1 for male.
+  > 性别。可选。0 - 女，1-男。默认 1。  
+  > Gender. Optional. 0 for female, 1 for male. 1 by default.
+
+- eightCharProviderSect： `Number`
+
+  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
+  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
 
 ### buildBaziFromSolarDatetime
 
@@ -78,3 +83,8 @@ Node.js 22 or above.
 
   > 性别。可选。0 - 女，1-男。  
   > Gender. Optional. 0 for female, 1 for male.
+
+- eightCharProviderSect： `Number`
+
+  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
+  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
