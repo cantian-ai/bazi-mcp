@@ -7,7 +7,8 @@
     "typescript": "^5.8.3"
   },
   "scripts": {
-    "tsc": "rm -rf dist && tsc"
+    "tsc": "rm -rf dist && tsc",
+    "postinstall": "tsc"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.10.2",

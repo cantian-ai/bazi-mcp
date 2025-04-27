@@ -12,9 +12,14 @@ const server = new McpServer({
 server.tool(
   'buildBaziFromLunarDatetime',
   {
-    lunarDatetime: z.string().describe('Lunar datetime string in ISO format.'),
+    lunarDatetime: z.string().describe('农历时间。例如：`2000-5-15 12:00:00`。'),
+    gender: z.number().describe('传0表示女性，传1表示男性。'),
+    eightCharProviderSect: z
+      .number()
+      .default(2)
+      .describe('早晚子时配置。传1表示23:00-23:59日干支为明天，传2表示23:00-23:59日干支为当天。'),
   },
-  async ({ lunarDatetime }) => {
+  async ({ lunarDatetime, gender, eightCharProviderSect }) => {
     const date = toDate(lunarDatetime);
     const lunarHour = LunarHour.fromYmdHms(
       date.getFullYear(),
@@ -28,7 +33,9 @@ server.tool(
       content: [
         {
           type: 'text',
-          text: JSON.stringify(buildBazi(lunarHour)),
+          text: JSON.stringify(
+            buildBazi({ lunarHour, gender: gender as 0 | 1, eightCharProviderSect: eightCharProviderSect as 1 | 2 }),
+          ),
         },
       ],
     };
@@ -38,15 +45,26 @@ server.tool(
 server.tool(
   'buildBaziFromSolarDatetime',
   {
-    solarDatetime: z.string().describe('Solar datetime in ISO format. Example: `2008-03-01T13:00:00:+08:00`'),
+    solarDatetime: z.string().describe('用ISO时间格式表示的阳历时间. 例如：`2008-03-01T13:00:00+08:00`。'),
+    gender: z.number().describe('传0表示女性，传1表示男性。'),
+    eightCharProviderSect: z
+      .number()
+      .default(2)
+      .describe('早晚子时配置。传1表示23:00-23:59日干支为明天，传2表示23:00-23:59日干支为当天。'),
   },
-  async ({ solarDatetime }) => {
+  async ({ solarDatetime, gender, eightCharProviderSect }) => {
     const lunarHour = solarDatetimeToLunarHour(solarDatetime);
     return {
       content: [
         {
           type: 'text',
-          text: JSON.stringify(buildBazi(lunarHour)),
+          text: JSON.stringify(
+            buildBazi({
+              lunarHour,
+              gender: gender as 0 | 1,
+              eightCharProviderSect: eightCharProviderSect as 1 | 2,
+            }),
+          ),
         },
       ],
     };
