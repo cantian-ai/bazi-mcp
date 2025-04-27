@@ -1,12 +1,37 @@
-# Bazi MCP
+# Bazi MCP by Cantian AI
+# 参天AI八字MCP
 
-根据个人的出生时间来提供八字信息的 MCP server。八字学是中国传统命理学的重要分支，广泛应用于性格分析、命运预测等领域。
+## The First Metaphysical Bazi MCP
 
-目前本项目已应用在参天 AI 平台：[cantian.ai](https://cantian.ai)。我们欢迎更多命理爱好者和研究者在此交流经验、分享见解，积极参与项目共建，共同推动中国传统文化的传承与发展。有任何问题欢迎提 issue。
+Unlock precise Bazi insights with the **Bazi MCP**, the first AI-powered metaphysical Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.
 
-An MCP server that provides BaZi information based on an individual's birth datetime.BaZi is a traditional Chinese metaphysics system used for personality analysis, fortune-telling, and destiny forecasting.
+### Why Bazi MCP?
+- **Accurate Bazi Calculations**: Provide insightful Bazi information.
+- **AI Agent Integration**: Empowers AI agents with precise Bazi data.
+- **Community-Driven**: Join enthusiasts to advance Chinese metaphysics.
 
-The MCP server is currently integrated with the Cantian AI platform: [cantian.ai](https://cantian.ai). We invite enthusiasts and practitioners of Chinese metaphysics to participate, share their insights, and contribute to the continued development of the project. Together, let’s advance the understanding of Chinese traditional culture and foster an open, collaborative community in the field of BaZi and fate analysis. Feel free to submit issues.
+Originating from the popular [*Chinese Bazi Fortune Teller*](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du) GPTs in the GPT Store, this project is now integrated with **Cantian AI** ([cantian.ai](https://cantian.ai)). We invite Bazi practitioners and AI enthusiasts to collaborate, share insights, and contribute to our open-source community.
+
+### Get Involved
+- **Contact**: [support@cantian.ai](mailto:support@cantian.ai)
+
+
+## 首个人工智能玄学八字MCP
+
+**八字MCP**是参天AI推出的首个人工智能八字计算平台，针对GPT和DeepSeek等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
+
+### 八字MCP亮点
+- **精准排盘**：提供全面的八字排盘信息。
+- **AI赋能**：为AI智能体提供可靠八字服务。
+- **社区共建**：欢迎命理爱好者参与交流与开发。
+
+项目源于GPT Store热门应用[*Chinese Bazi Fortune Teller*](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du)，现已融入**参天AI**平台 ([cantian.ai](https://cantian.ai))。我们诚邀命理研究者与AI开发者加入，共同推动中国传统文化的传承与创新。
+
+### 联系我们
+- **邮箱**：[support@cantian.ai](mailto:support@cantian.ai)
+- **微信**：
+<img src="https://github.com/user-attachments/assets/7790b64e-e03f-47e2-b824-38459549a6d8" alt="WeChat QR Code" width="200"/>
+
 
 ## 前置需求 ｜ Prerequisite
 
@@ -74,7 +99,7 @@ Node.js 22 or above.
 
 #### 参数 ｜ Arguments
 
-- solarDatetime: `String`
+- lunarDatetime: `String`
 
   > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
   > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
@@ -166,3 +191,7 @@ Example of the result returned from MCP server:
   }
 }
 ```
+
+
+
+**Keywords**: Bazi MCP, Bazi AI Agent, Fengshui AI Agent, Bazi Calculator MCP, Bazi Calculator AI, Cantian AI
