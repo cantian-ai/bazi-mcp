@@ -1,7 +1,4 @@
-# Bazi MCP by Cantian AI
-# 参天AI八字MCP
-
-## The First Metaphysical Bazi MCP
+# Bazi MCP (八字MCP) by Cantian AI
 
 Unlock precise Bazi insights with the **Bazi MCP**, the first AI-powered metaphysical Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.
 
@@ -15,8 +12,7 @@ Originating from the popular [*Chinese Bazi Fortune Teller*](https://chatgpt.com
 ### Get Involved
 - **Contact**: [support@cantian.ai](mailto:support@cantian.ai)
 
-
-## 首个人工智能玄学八字MCP
+## 中文
 
 **八字MCP**是参天AI推出的首个人工智能八字计算平台，针对GPT和DeepSeek等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
 
