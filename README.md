@@ -2,7 +2,7 @@
 
 根据个人的出生时间来提供八字信息的 MCP server。八字学是中国传统命理学的重要分支，广泛应用于性格分析、命运预测等领域。
 
-目前，本项目已应用在参天 AI 平台：[cantian.ai](https://cantian.ai)。我们欢迎更多命理爱好者和研究者在此交流经验、分享见解，积极参与项目共建，共同推动中国传统文化的传承与发展。有任何问题欢迎提 issue。
+目前本项目已应用在参天 AI 平台：[cantian.ai](https://cantian.ai)。我们欢迎更多命理爱好者和研究者在此交流经验、分享见解，积极参与项目共建，共同推动中国传统文化的传承与发展。有任何问题欢迎提 issue。
 
 An MCP server that provides BaZi information based on an individual's birth datetime.BaZi is a traditional Chinese metaphysics system used for personality analysis, fortune-telling, and destiny forecasting.
 
