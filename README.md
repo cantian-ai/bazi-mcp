@@ -74,7 +74,7 @@ Node.js 22 or above.
 
 #### 参数 ｜ Arguments
 
-- lunarDatetime: `String`
+- solarDatetime: `String`
 
   > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
   > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
