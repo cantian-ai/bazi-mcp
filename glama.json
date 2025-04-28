@@ -1,6 +1,7 @@
 {
   "$schema": "https://glama.ai/mcp/schemas/server.json",
   "maintainers": [
+    "xiaojxiao2021",
     "Cantian AI"
   ]
 }
