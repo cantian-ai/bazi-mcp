@@ -32,6 +32,7 @@ Originating from the popular [_Chinese Bazi Fortune Teller_](https://chatgpt.com
 
 - **邮箱**：[support@cantian.ai](mailto:support@cantian.ai)
 - **微信**：
+
   <img src="https://github.com/user-attachments/assets/7790b64e-e03f-47e2-b824-38459549a6d8" alt="WeChat QR Code" width="200"/>
 
 ## 前置需求 ｜ Prerequisite
