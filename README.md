@@ -1,35 +1,38 @@
-# Bazi MCP (八字MCP) by Cantian AI
+# Bazi MCP (八字 MCP) by Cantian AI
 
 [![smithery badge](https://smithery.ai/badge/@cantian-ai/bazi-mcp)](https://smithery.ai/server/@cantian-ai/bazi-mcp)
 
 Unlock precise Bazi insights with the **Bazi MCP**, the first AI-powered metaphysical Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.
 
 ### Why Bazi MCP?
+
 - **Accurate Bazi Calculations**: Provide insightful Bazi information.
 - **AI Agent Integration**: Empowers AI agents with precise Bazi data.
 - **Community-Driven**: Join enthusiasts to advance Chinese metaphysics.
 
-Originating from the popular [*Chinese Bazi Fortune Teller*](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du) GPTs in the GPT Store, this project is now integrated with **Cantian AI** ([cantian.ai](https://cantian.ai)). We invite Bazi practitioners and AI enthusiasts to collaborate, share insights, and contribute to our open-source community.
+Originating from the popular [_Chinese Bazi Fortune Teller_](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du) GPTs in the GPT Store, this project is now integrated with **Cantian AI** ([cantian.ai](https://cantian.ai)). We invite Bazi practitioners and AI enthusiasts to collaborate, share insights, and contribute to our open-source community.
 
 ### Get Involved
+
 - **Contact**: [support@cantian.ai](mailto:support@cantian.ai)
 
 ## 中文
 
-**八字MCP**是参天AI推出的首个人工智能八字计算平台，针对GPT和DeepSeek等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
+**八字 MCP**是参天 AI 推出的首个人工智能八字计算平台，针对 GPT 和 DeepSeek 等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
 
-### 八字MCP亮点
+### 八字 MCP 亮点
+
 - **精准排盘**：提供全面的八字排盘信息。
-- **AI赋能**：为AI智能体提供可靠八字服务。
+- **AI 赋能**：为 AI 智能体提供可靠八字服务。
 - **社区共建**：欢迎命理爱好者参与交流与开发。
 
-项目源于GPT Store热门应用[*Chinese Bazi Fortune Teller*](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du)，现已融入**参天AI**平台 ([cantian.ai](https://cantian.ai))。我们诚邀命理研究者与AI开发者加入，共同推动中国传统文化的传承与创新。
+项目源于 GPT Store 热门应用[_Chinese Bazi Fortune Teller_](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du)，现已融入**参天 AI**平台 ([cantian.ai](https://cantian.ai))。我们诚邀命理研究者与 AI 开发者加入，共同推动中国传统文化的传承与创新。
 
 ### 联系我们
+
 - **邮箱**：[support@cantian.ai](mailto:support@cantian.ai)
 - **微信**：
-<img src="https://github.com/user-attachments/assets/7790b64e-e03f-47e2-b824-38459549a6d8" alt="WeChat QR Code" width="200"/>
-
+  <img src="https://github.com/user-attachments/assets/7790b64e-e03f-47e2-b824-38459549a6d8" alt="WeChat QR Code" width="200"/>
 
 ## 前置需求 ｜ Prerequisite
 
@@ -39,32 +42,20 @@ Node.js 22 or above.
 
 ## 开始使用 ｜ Start
 
-1. 克隆仓库到本地并进入仓库目录。
+配置 AI 应用（例如 Claude Descktop）。
 
-   Clone this repository and navigate to the repository directory.
+Configure AI application (e.g. Claude Desktop).
 
-2. 安装依赖。
-
-   Install dependencies.
-
-   ```sh
-   npm i
-   ```
-
-3. 配置 AI 应用（例如 Claude Descktop）。
-
-   Configure AI application (e.g. Claude Desktop).
-
-   ```json
-   {
-     "mcpServers": {
-       "Bazi": {
-         "command": "node",
-         "args": ["{Absolute path of the repository directory}/dist/stdio.js"]
-       }
-     }
-   }
-   ```
+```json
+{
+  "mcpServers": {
+    "Bazi": {
+      "command": "npx",
+      "args": ["bazi-mcp"]
+    }
+  }
+}
+```
 
 ### Installing via Smithery
 
@@ -197,7 +188,5 @@ Example of the result returned from MCP server:
   }
 }
 ```
-
-
 
 **Keywords**: Bazi MCP, Bazi AI Agent, Fengshui AI Agent, Bazi Calculator MCP, Bazi Calculator AI, Cantian AI

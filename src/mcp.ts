@@ -21,7 +21,7 @@ server.tool(
       .describe('早晚子时配置。传1表示23:00-23:59日干支为明天，传2表示23:00-23:59日干支为当天。'),
   },
   async ({ lunarDatetime, gender, eightCharProviderSect }) => {
-    const date = toDate(lunarDatetime);
+    const date = toDate(new Date(lunarDatetime));
     const lunarHour = LunarHour.fromYmdHms(
       date.getFullYear(),
       date.getMonth() + 1,
