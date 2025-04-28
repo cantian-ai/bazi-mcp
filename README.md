@@ -2,7 +2,7 @@
 
 [![smithery badge](https://smithery.ai/badge/@cantian-ai/bazi-mcp)](https://smithery.ai/server/@cantian-ai/bazi-mcp)
 
-Unlock precise Bazi insights with the **Bazi MCP**, the first AI-powered metaphysical Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.
+Unlock precise Bazi insights with the **Bazi MCP**, the first AI-powered Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.
 
 ### Why Bazi MCP?
 
@@ -18,7 +18,7 @@ Originating from the popular [_Chinese Bazi Fortune Teller_](https://chatgpt.com
 
 ## 中文
 
-**八字 MCP**是参天 AI 推出的首个人工智能八字计算平台，针对 GPT 和 DeepSeek 等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
+**八字 MCP**是参天 AI 推出的首个面向玄学领域的MCP，针对 GPT 和 DeepSeek 等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
 
 ### 八字 MCP 亮点
 
