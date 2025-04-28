@@ -1,5 +1,7 @@
 # Bazi MCP (八字MCP) by Cantian AI
 
+[![smithery badge](https://smithery.ai/badge/@cantian-ai/bazi-mcp)](https://smithery.ai/server/@cantian-ai/bazi-mcp)
+
 Unlock precise Bazi insights with the **Bazi MCP**, the first AI-powered metaphysical Bazi calculator. Built to address inaccuracies in existing AI fortune-telling tools like GPT and DeepSeek, our MCP delivers reliable Bazi data for personality analysis, destiny forecasting, and more.
 
 ### Why Bazi MCP?
@@ -63,6 +65,14 @@ Node.js 22 or above.
      }
    }
    ```
+
+### Installing via Smithery
+
+To install bazi-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@cantian-ai/bazi-mcp):
+
+```bash
+npx -y @smithery/cli install @cantian-ai/bazi-mcp --client claude
+```
 
 ## 工具列表 | Tools
 
