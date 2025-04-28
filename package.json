@@ -1,12 +1,23 @@
 {
   "name": "bazi-mcp",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "type": "module",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.14.1",
     "typescript": "^5.8.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cantian-ai/bazi-mcp.git"
+  },
+  "keywords": [
+    "bazi",
+    "八字",
+    "mcp",
+    "算命",
+    "命理"
+  ],
   "scripts": {
     "tsc": "rm -rf dist && tsc",
     "prepublishOnly": "npm run tsc && chmod +x dist/stdio.js"
