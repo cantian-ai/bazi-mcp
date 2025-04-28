@@ -11,6 +11,7 @@ const server = new McpServer({
 
 server.tool(
   'buildBaziFromLunarDatetime',
+  '根据农历时间、性别来获取八字信息。',
   {
     lunarDatetime: z.string().describe('农历时间。例如：`2000-5-15 12:00:00`。'),
     gender: z.number().describe('传0表示女性，传1表示男性。'),
@@ -44,6 +45,7 @@ server.tool(
 
 server.tool(
   'buildBaziFromSolarDatetime',
+  '根据阳历时间、性别来获取八字信息。',
   {
     solarDatetime: z.string().describe('用ISO时间格式表示的阳历时间. 例如：`2008-03-01T13:00:00+08:00`。'),
     gender: z.number().describe('传0表示女性，传1表示男性。'),
