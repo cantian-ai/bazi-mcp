@@ -1,14 +1,18 @@
 import { toDate, toZonedTime } from 'date-fns-tz';
 import {
+  ChildLimit,
   DefaultEightCharProvider,
   EightChar,
+  Gender,
   HeavenStem,
   LunarHour,
   LunarSect2EightCharProvider,
   SixtyCycle,
   SolarTime,
 } from 'tyme4ts';
+import { getHeavenStemGod, getHideHeavenStem } from './decadeFortuneGods.js';
 import { buildGods } from './god.js';
+import { getRelation } from './relation.js';
 
 const eightCharProvider1 = new DefaultEightCharProvider();
 const eightCharProvider2 = new LunarSect2EightCharProvider();
@@ -87,7 +91,36 @@ const buildGodsObject = (eightChar: EightChar, gender: 0 | 1) => {
   };
 };
 
-export const buildBazi = (options: { lunarHour: LunarHour; eightCharProviderSect?: 1 | 2; gender?: 0 | 1 }) => {
+const buildDecadeFortuneObject = (solarTime: SolarTime, gender: Gender, me: HeavenStem) => {
+  const childLimit = ChildLimit.fromSolarTime(solarTime, gender);
+
+  let decadeFortune = childLimit.getStartDecadeFortune();
+  const startDate = childLimit.getEndTime();
+  const decadeFortuneObjects: any[] = [];
+  for (let i = 0; i < 10; i++) {
+    const sixtyCycle = decadeFortune.getSixtyCycle();
+    const heavenStem = sixtyCycle.getHeavenStem();
+    const earthBranch = sixtyCycle.getEarthBranch();
+    decadeFortuneObjects.push({
+      干支: sixtyCycle.toString(),
+      开始年份: decadeFortune.getStartSixtyCycleYear().getYear(),
+      结束: decadeFortune.getEndSixtyCycleYear().getYear(),
+      天干十神: getHeavenStemGod(me.toString(), heavenStem.toString()),
+      地支十神: getHideHeavenStem(earthBranch.toString()).map((heavenStem) => getHeavenStemGod(me.toString(), heavenStem)),
+      地支藏干: earthBranch.getHideHeavenStems().map((heavenStem) => heavenStem.toString()),
+      开始年龄: decadeFortune.getStartAge(),
+      结束年龄: decadeFortune.getEndAge(),
+    });
+    decadeFortune = decadeFortune.next(1);
+  }
+
+  return {
+    起运日期: `${startDate.getYear()}-${startDate.getMonth()}-${startDate.getDay()}`,
+    大运: decadeFortuneObjects,
+  };
+};
+
+export const buildBazi = (options: { lunarHour: LunarHour; eightCharProviderSect?: 1 | 2; gender?: Gender }) => {
   const { lunarHour, eightCharProviderSect = 2, gender = 1 } = options;
   if (eightCharProviderSect === 2) {
     LunarHour.provider = eightCharProvider2;
@@ -109,5 +142,7 @@ export const buildBazi = (options: { lunarHour: LunarHour; eightCharProviderSect
     命宫: eightChar.getOwnSign().toString(),
     身宫: eightChar.getBodySign().toString(),
     神煞: buildGodsObject(eightChar, gender),
+    大运: buildDecadeFortuneObject(lunarHour.getSolarTime(), gender, me),
+    刑冲合会: getRelation(eightChar),
   };
 };
