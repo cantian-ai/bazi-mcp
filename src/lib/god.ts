@@ -62,46 +62,6 @@ const SHEN_MAP_MONTHZHI_GAN: Record<string, Record<string, string>> = {
 
 // 年日天干对各地支
 const SHEN_MAP_YEARDAYGAN_ZHI: Record<string, Record<string, string>> = {
-  文昌贵人: {
-    甲: '巳',
-    乙: '午',
-    丙: '申',
-    丁: '酉',
-    戊: '申',
-    己: '酉',
-    庚: '亥',
-    辛: '子',
-    壬: '寅',
-    癸: '卯',
-  },
-  金舆: {
-    甲: '辰',
-    乙: '巳',
-    丙: '未',
-    丁: '申',
-    戊: '未',
-    己: '申',
-    庚: '戌',
-    辛: '亥',
-    壬: '丑',
-    癸: '寅',
-  },
-  国印: {
-    甲: '戌',
-    乙: '亥',
-    丙: '丑',
-    丁: '寅',
-    戊: '丑',
-    己: '寅',
-    庚: '辰',
-    辛: '巳',
-    壬: '未',
-    癸: '申',
-  },
-};
-
-// 各柱地支对主干
-const SHEN_MAP_DAYGAN_ZHI: Record<string, Record<string, string>> = {
   天乙贵人: {
     甲: '丑未',
     乙: '子申',
@@ -150,6 +110,46 @@ const SHEN_MAP_DAYGAN_ZHI: Record<string, Record<string, string>> = {
     壬: '辰',
     癸: '丑',
   },
+  文昌贵人: {
+    甲: '巳',
+    乙: '午',
+    丙: '申',
+    丁: '酉',
+    戊: '申',
+    己: '酉',
+    庚: '亥',
+    辛: '子',
+    壬: '寅',
+    癸: '卯',
+  },
+  金舆: {
+    甲: '辰',
+    乙: '巳',
+    丙: '未',
+    丁: '申',
+    戊: '未',
+    己: '申',
+    庚: '戌',
+    辛: '亥',
+    壬: '丑',
+    癸: '寅',
+  },
+  国印: {
+    甲: '戌',
+    乙: '亥',
+    丙: '丑',
+    丁: '寅',
+    戊: '丑',
+    己: '寅',
+    庚: '辰',
+    辛: '巳',
+    壬: '未',
+    癸: '申',
+  },
+};
+
+// 基于日干判断的神煞 (日干对各地支)
+const SHEN_MAP_DAYGAN_ZHI = {
   禄神: {
     // 十干禄
     甲: '寅',
@@ -814,18 +814,11 @@ export function buildGods(eightChar: EightChar, gender: 0 | 1 = 1) {
   for (const [monthRule, dexiuDict] of Object.entries(DEXIU)) {
     if (monthRule.includes(monthZhi)) {
       let isXiu = false;
-      for (const gan1 of ganArray) {
-        for (const gan2 of ganArray) {
-          if (dexiuDict['秀'].includes(gan1) && dexiuDict['秀'].includes(gan2) && gan1 !== gan2) {
-            isXiu = true;
-            break;
-          }
-        }
-      }
-      if (isXiu) {
-        for (const [index, gan3] of Object.entries(ganArray)) {
-          if (dexiuDict['德'].includes(gan3)) {
-            gods[index].push('德秀贵人');
+      for (const [zhu1, gan1] of Object.entries(ganArray)) {
+        for (const [zhu2, gan2] of Object.entries(ganArray)) {
+          if (dexiuDict['德'].includes(gan1) && dexiuDict['秀'].includes(gan2) && zhu1 !== zhu2) {
+            gods[zhu1].push('德秀贵人');
+            gods[zhu2].push('德秀贵人');
           }
         }
       }
