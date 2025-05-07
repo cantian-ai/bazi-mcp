@@ -18,7 +18,7 @@ Originating from the popular [_Chinese Bazi Fortune Teller_](https://chatgpt.com
 
 ## 中文
 
-**八字 MCP**是参天 AI 推出的首个面向玄学领域的MCP，针对 GPT 和 DeepSeek 等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
+**八字 MCP**是参天 AI 推出的首个面向玄学领域的 MCP，针对 GPT 和 DeepSeek 等算命工具常出现的排盘错误，提供精准的八字数据，助力性格分析、命运预测等应用。
 
 ### 八字 MCP 亮点
 
@@ -68,12 +68,17 @@ npx -y @smithery/cli install @cantian-ai/bazi-mcp --client claude
 
 ## 工具列表 | Tools
 
-### buildBaziFromLunarDatetime
+### getBaziDetail
 
-> 根据`农历`时间计算八字结果。  
-> Calculate the BaZi results based on the lunar datetime.
+> 根据给定的公历或农历时间计算八字信息。
+> Calculate the Bazi results based on the solar/lunar datetime.
 
-#### 参数 ｜ Arguments
+#### 参数 | Arguments
+
+- solarDatetime: `String`
+
+  > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
+  > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
 
 - lunarDatetime: `String`
 
@@ -90,39 +95,16 @@ npx -y @smithery/cli install @cantian-ai/bazi-mcp --client claude
   > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
   > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
 
-### buildBaziFromSolarDatetime
-
-> 根据`阳历`时间计算八字结果。  
-> Calculate the BaZi results based on the solar datetime.
-
-#### 参数 ｜ Arguments
-
-- lunarDatetime: `String`
-
-  > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
-  > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
-
-- gender: `Number`
-
-  > 性别。可选。0 - 女，1-男。  
-  > Gender. Optional. 0 for female, 1 for male.
-
-- eightCharProviderSect： `Number`
-
-  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
-  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
-
-## 八字结果 | Bazi result
-
-工具返回的八字结果实例：
-
-Example of the result returned from MCP server:
+#### 结果示例 ｜ Result example
 
 ```json
 {
   "性别": "男",
   "阳历": "1998年7月31日 14:10:00",
   "农历": "农历戊寅年六月初九辛未时",
+  "八字": "戊寅 己未 己卯 辛未",
+  "生肖": "虎",
+  "日主": "己",
   "年柱": {
     "天干": {
       "天干": "戊",
@@ -248,9 +230,9 @@ Example of the result returned from MCP server:
   "身宫": "乙卯",
   "神煞": {
     "年柱": ["国印", "亡神"],
-    "月柱": ["天德合", "月德合", "金舆", "太极贵人", "福星贵人", "血刃", "华盖", "天喜", "元辰"],
+    "月柱": ["天德合", "月德合", "天乙贵人", "太极贵人", "福星贵人", "金舆", "血刃", "华盖", "天喜", "元辰"],
     "日柱": ["天德合", "月德合", "桃花", "九丑", "童子煞"],
-    "时柱": ["金舆", "太极贵人", "福星贵人", "血刃", "华盖", "天喜", "元辰", "童子煞"]
+    "时柱": ["天乙贵人", "太极贵人", "福星贵人", "金舆", "血刃", "华盖", "天喜", "元辰", "童子煞"]
   },
   "大运": {
     "起运日期": "2001-1-26",
@@ -406,5 +388,102 @@ Example of the result returned from MCP server:
   }
 }
 ```
+
+### getSolarTimes
+
+> 根据给定的八字返回可能的公历时间列表。
+> Return a list of possible solar calendar datetime based on the given Bazi.
+
+#### 参数 | Arguments
+
+- bazi: `String`
+
+  > 八字，各柱用空格隔开。
+  > Bazi, with each pillar separated by a space.
+
+#### 结果示例 ｜ Result example
+
+```json
+["1758-07-29 14:00:00", "1818-07-15 14:00:00", "1998-07-31 14:00:00"]
+```
+
+### getChineseCalendar
+
+> 获取指定公历时间（默认今天）的黄历信息。
+> Get chinese calendar information for the specified solar calendar date (default is today).
+
+#### 参数 | Arguments
+
+- solarDatetime
+
+  > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
+  > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
+
+#### 结果示例 ｜ Result example
+
+```json
+{
+  "公历": "2025年5月7日 星期三",
+  "农历": "农历乙巳年四月初十",
+  "干支": "乙巳 辛巳 丙子",
+  "生肖": "蛇",
+  "纳音": "涧下水",
+  "节气": "立夏",
+  "二十八宿": "箕水豹吉",
+  "彭祖百忌": "丙不修灶必见灾殃 子不问卜自惹祸殃",
+  "喜神方位": "西南",
+  "阳贵神方位": "西",
+  "阴贵神方位": "西北",
+  "福神方位": "东",
+  "财神方位": "西南",
+  "冲煞": "冲马(午)煞南",
+  "宜": "嫁娶,祭祀,祈福,求嗣,开光,出行,拆卸,动土,上梁,出火,进人口,入宅,移徙,安床,栽种,纳畜,牧养,竖柱,安门,修造,解除,会亲友",
+  "忌": ""
+}
+```
+
+### ~~buildBaziFromLunarDatetime~~ (deprecated)
+
+> 根据`农历`时间计算八字结果。  
+> Calculate the BaZi results based on the lunar datetime.
+
+#### 参数 ｜ Arguments
+
+- lunarDatetime: `String`
+
+  > 农历时间。例如：`2000-05-15 12:00:00`。  
+  > Lunar datetime. Example: `2000-05-15 12:00:00`.
+
+- gender: `Number`
+
+  > 性别。可选。0 - 女，1-男。默认 1。  
+  > Gender. Optional. 0 for female, 1 for male. 1 by default.
+
+- eightCharProviderSect： `Number`
+
+  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
+  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
+
+### ~~buildBaziFromSolarDatetime~~ (deprecated)
+
+> 根据`阳历`时间计算八字结果。  
+> Calculate the BaZi results based on the solar datetime.
+
+#### 参数 ｜ Arguments
+
+- solarDatetime: `String`
+
+  > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
+  > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
+
+- gender: `Number`
+
+  > 性别。可选。0 - 女，1-男。  
+  > Gender. Optional. 0 for female, 1 for male.
+
+- eightCharProviderSect： `Number`
+
+  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
+  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
 
 **Keywords**: Bazi MCP, Bazi AI Agent, Fengshui AI Agent, Bazi Calculator MCP, Bazi Calculator AI, Cantian AI

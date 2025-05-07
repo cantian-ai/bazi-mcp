@@ -1,4 +1,3 @@
-import { toDate, toZonedTime } from 'date-fns-tz';
 import {
   ChildLimit,
   DefaultEightCharProvider,
@@ -16,25 +15,6 @@ import { getRelation } from './relation.js';
 
 const eightCharProvider1 = new DefaultEightCharProvider();
 const eightCharProvider2 = new LunarSect2EightCharProvider();
-
-/**
- *
- * @param solarTime Solar time string in ISO format.
- */
-export const solarDatetimeToLunarHour = (solarDatetime: string) => {
-  const date = toDate(solarDatetime);
-  const zonedDate = toZonedTime(date, '+08:00');
-  const solarTime = SolarTime.fromYmdHms(
-    zonedDate.getFullYear(),
-    zonedDate.getMonth() + 1,
-    zonedDate.getDate(),
-    zonedDate.getHours(),
-    zonedDate.getMinutes(),
-    0,
-  );
-  const lunarHour = solarTime.getLunarHour();
-  return lunarHour;
-};
 
 export const buildHideHeavenObject = (heavenStem: HeavenStem | null | undefined, me: HeavenStem) => {
   if (!heavenStem) {
