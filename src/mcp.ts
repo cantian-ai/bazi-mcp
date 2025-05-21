@@ -1,10 +1,10 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { toDate } from 'date-fns-tz';
-import { EightChar, LunarHour } from 'tyme4ts';
+import { LunarHour } from 'tyme4ts';
 import z from 'zod';
+import { getBaziDetail, getChineseCalendar, getSolarTimes } from './index.js';
 import { buildBazi } from './lib/bazi.js';
-import { getChineseCalendar } from './lib/chineseCalendar.js';
-import { formatSolarTime, getSolarTime } from './lib/date.js';
+import { getSolarTime } from './lib/date.js';
 
 const server = new McpServer({
   name: 'Bazi',
@@ -24,32 +24,13 @@ server.tool(
       .default(2)
       .describe('早晚子时配置。传1表示23:00-23:59日干支为明天，传2表示23:00-23:59日干支为当天。'),
   },
-  async ({ lunarDatetime, solarDatetime, gender, eightCharProviderSect }) => {
-    if (!lunarDatetime && !solarDatetime) {
-      throw new Error('solarDatetime和lunarDatetime必须传且只传其中一个。');
-    }
-    let lunarHour: LunarHour;
-    if (lunarDatetime) {
-      const date = toDate(new Date(lunarDatetime));
-      lunarHour = LunarHour.fromYmdHms(
-        date.getFullYear(),
-        date.getMonth() + 1,
-        date.getDate(),
-        date.getHours(),
-        date.getMinutes(),
-        date.getSeconds(),
-      );
-    } else {
-      const solarTime = getSolarTime(solarDatetime!);
-      lunarHour = solarTime.getLunarHour();
-    }
+  async (data) => {
+    const result = getBaziDetail(data);
     return {
       content: [
         {
           type: 'text',
-          text: JSON.stringify(
-            buildBazi({ lunarHour, gender: gender as 0 | 1, eightCharProviderSect: eightCharProviderSect as 1 | 2 }),
-          ),
+          text: JSON.stringify(result),
         },
       ],
     };
@@ -62,10 +43,8 @@ server.tool(
   {
     bazi: z.string().describe('八字，按年柱、月柱、日柱、时柱顺序，用空格隔开。例如：戊寅 己未 己卯 辛未'),
   },
-  async ({ bazi }) => {
-    const [year, month, day, hour] = bazi.split(' ');
-    const solarTimes = new EightChar(year, month, day, hour).getSolarTimes(1700, new Date().getFullYear());
-    const result = solarTimes.map((time) => formatSolarTime(time));
+  async (data) => {
+    const result = getSolarTimes(data);
     return {
       content: [
         {

@@ -1,6 +1,6 @@
 {
   "name": "bazi-mcp",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "type": "module",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
@@ -19,6 +19,9 @@
     "命理"
   ],
   "license": "ISC",
+  "exports": {
+    ".": "./dist/index.js"
+  },
   "scripts": {
     "tsc": "rm -rf dist && tsc",
     "prepublishOnly": "npm run tsc && chmod +x dist/stdio.js"
