@@ -9,7 +9,6 @@ import {
   SixtyCycle,
   SolarTime,
 } from 'tyme4ts';
-import { getHeavenStemGod, getHideHeavenStem } from './decadeFortuneGods.js';
 import { buildGods } from './god.js';
 import { getRelation } from './relation.js';
 
@@ -85,8 +84,8 @@ const buildDecadeFortuneObject = (solarTime: SolarTime, gender: Gender, me: Heav
       干支: sixtyCycle.toString(),
       开始年份: decadeFortune.getStartSixtyCycleYear().getYear(),
       结束: decadeFortune.getEndSixtyCycleYear().getYear(),
-      天干十神: getHeavenStemGod(me.toString(), heavenStem.toString()),
-      地支十神: getHideHeavenStem(earthBranch.toString()).map((heavenStem) => getHeavenStemGod(me.toString(), heavenStem)),
+      天干十神: me.getTenStar(heavenStem).getName(),
+      地支十神: earthBranch.getHideHeavenStems().map(heavenStem => me.getTenStar(heavenStem.getHeavenStem()).getName()),
       地支藏干: earthBranch.getHideHeavenStems().map((heavenStem) => heavenStem.toString()),
       开始年龄: decadeFortune.getStartAge(),
       结束年龄: decadeFortune.getEndAge(),
