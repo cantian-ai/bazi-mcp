@@ -75,6 +75,7 @@ const buildDecadeFortuneObject = (solarTime: SolarTime, gender: Gender, me: Heav
   const childLimit = ChildLimit.fromSolarTime(solarTime, gender);
 
   let decadeFortune = childLimit.getStartDecadeFortune();
+  const firstStartAge = decadeFortune.getStartAge();
   const startDate = childLimit.getEndTime();
   const decadeFortuneObjects: any[] = [];
   for (let i = 0; i < 10; i++) {
@@ -96,6 +97,7 @@ const buildDecadeFortuneObject = (solarTime: SolarTime, gender: Gender, me: Heav
 
   return {
     起运日期: `${startDate.getYear()}-${startDate.getMonth()}-${startDate.getDay()}`,
+    起运年龄: firstStartAge,
     大运: decadeFortuneObjects,
   };
 };
