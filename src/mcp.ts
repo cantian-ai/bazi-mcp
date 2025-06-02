@@ -25,7 +25,7 @@ server.tool(
       .describe('早晚子时配置。传1表示23:00-23:59日干支为明天，传2表示23:00-23:59日干支为当天。'),
   },
   async (data) => {
-    const result = getBaziDetail(data);
+    const result = await getBaziDetail(data);
     return {
       content: [
         {
@@ -44,7 +44,7 @@ server.tool(
     bazi: z.string().describe('八字，按年柱、月柱、日柱、时柱顺序，用空格隔开。例如：戊寅 己未 己卯 辛未'),
   },
   async (data) => {
-    const result = getSolarTimes(data);
+    const result = await getSolarTimes(data);
     return {
       content: [
         {
