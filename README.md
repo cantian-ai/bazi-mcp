@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/cantian-ai-bazi-mcp-badge.png)](https://mseep.ai/app/cantian-ai-bazi-mcp)
+
 # Bazi MCP (八字 MCP) by Cantian AI
 
 [![smithery badge](https://smithery.ai/badge/@cantian-ai/bazi-mcp)](https://smithery.ai/server/@cantian-ai/bazi-mcp)
