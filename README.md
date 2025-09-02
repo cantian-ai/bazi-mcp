@@ -29,6 +29,10 @@ Originating from the popular [_Chinese Bazi Fortune Teller_](https://chatgpt.com
 
 项目源于 GPT Store 热门应用[_Chinese Bazi Fortune Teller_](https://chatgpt.com/g/g-67c3f7b74d148191a2167f44fd13412d-chinese-bazi-fortune-teller-can-tian-ba-zi-suan-ming-jing-zhun-pai-pan-jie-du)，现已融入**参天 AI**平台 ([cantian.ai](https://cantian.ai))。我们诚邀命理研究者与 AI 开发者加入，共同推动中国传统文化的传承与创新。
 
+**注意：MCP 主要用于给 AI 提供知识输入，MCP 返回的字段不会严格按照文档返回，请不要当作 API 接口使用。**
+
+**Note: MCP is mainly used to provide knowledge input to AI. The fields returned by MCP will not strictly follow the documentation, so please do not use it as an API interface.**
+
 ### 联系我们
 
 - **邮箱**：[support@cantian.ai](mailto:support@cantian.ai)

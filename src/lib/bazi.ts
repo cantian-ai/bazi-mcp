@@ -1,3 +1,4 @@
+import { calculateRelation, getShen } from 'cantian-tymext';
 import {
   ChildLimit,
   DefaultEightCharProvider,
@@ -9,8 +10,6 @@ import {
   SixtyCycle,
   SolarTime,
 } from 'tyme4ts';
-import { buildGods } from './god.js';
-import { getRelation } from './relation.js';
 
 const eightCharProvider1 = new DefaultEightCharProvider();
 const eightCharProvider2 = new LunarSect2EightCharProvider();
@@ -61,7 +60,7 @@ export const buildSixtyCycleObject = (sixtyCycle: SixtyCycle, me?: HeavenStem) =
 };
 
 const buildGodsObject = (eightChar: EightChar, gender: 0 | 1) => {
-  const gods = buildGods(eightChar, gender);
+  const gods = getShen(eightChar.toString(), gender);
   return {
     年柱: gods[0],
     月柱: gods[1],
@@ -127,6 +126,11 @@ export const buildBazi = (options: { lunarHour: LunarHour; eightCharProviderSect
     身宫: eightChar.getBodySign().toString(),
     神煞: buildGodsObject(eightChar, gender),
     大运: buildDecadeFortuneObject(lunarHour.getSolarTime(), gender, me),
-    刑冲合会: getRelation(eightChar),
+    刑冲合会: calculateRelation({
+      年: { 天干: eightChar.getYear().getHeavenStem().toString(), 地支: eightChar.getYear().getEarthBranch().toString() },
+      月: { 天干: eightChar.getMonth().getHeavenStem().toString(), 地支: eightChar.getMonth().getEarthBranch().toString() },
+      日: { 天干: eightChar.getDay().getHeavenStem().toString(), 地支: eightChar.getDay().getEarthBranch().toString() },
+      时: { 天干: eightChar.getHour().getHeavenStem().toString(), 地支: eightChar.getHour().getEarthBranch().toString() },
+    }),
   };
 };
