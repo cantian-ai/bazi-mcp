@@ -2,7 +2,7 @@
   "name": "bazi-mcp",
   "version": "0.0.25",
   "type": "module",
-  "module": "./dist/smithery.js",
+  "module": "./src/smithery.ts",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
     "@types/node": "^22.14.1",
