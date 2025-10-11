@@ -44,6 +44,14 @@ Node.js 22 or above.
 
 ## 开始使用 ｜ Start
 
+### 使用 Streamable HTTP 启动 | Start by Streamable HTTP transport
+
+```shell
+npm start
+```
+
+### 使用 Stdio 启动 ｜ Start by Stdio transport
+
 配置 AI 应用（例如 Claude Descktop）。
 
 Configure AI application (e.g. Claude Desktop).
@@ -443,49 +451,5 @@ npx -y @smithery/cli install @cantian-ai/bazi-mcp --client claude
   "忌": ""
 }
 ```
-
-### ~~buildBaziFromLunarDatetime~~ (deprecated)
-
-> 根据`农历`时间计算八字结果。  
-> Calculate the BaZi results based on the lunar datetime.
-
-#### 参数 ｜ Arguments
-
-- lunarDatetime: `String`
-
-  > 农历时间。例如：`2000-05-15 12:00:00`。  
-  > Lunar datetime. Example: `2000-05-15 12:00:00`.
-
-- gender: `Number`
-
-  > 性别。可选。0 - 女，1-男。默认 1。  
-  > Gender. Optional. 0 for female, 1 for male. 1 by default.
-
-- eightCharProviderSect： `Number`
-
-  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
-  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
-
-### ~~buildBaziFromSolarDatetime~~ (deprecated)
-
-> 根据`阳历`时间计算八字结果。  
-> Calculate the BaZi results based on the solar datetime.
-
-#### 参数 ｜ Arguments
-
-- solarDatetime: `String`
-
-  > ISO 格式的阳历时间。例如：`2000-05-15T12:00:00+08:00`。  
-  > Solar datetime in ISO format. Example: `2000-05-15T12:00:00+08:00`.
-
-- gender: `Number`
-
-  > 性别。可选。0 - 女，1-男。  
-  > Gender. Optional. 0 for female, 1 for male.
-
-- eightCharProviderSect： `Number`
-
-  > 早晚子时配置。可选。1 - 表示 23:00-23:59 日干支为明天，2 - 表示 23:00-23:59 日干支为当天。默认 2。
-  > Configuration for eight char provider. Optional. 1 for meaning the day stem of 23:00-23:59 is for tomorrow, 2 for meaning the day stem of 23:00-23:59 is for today. 2 by default.
 
 **Keywords**: Bazi MCP, Bazi AI Agent, Fengshui AI Agent, Bazi Calculator MCP, Bazi Calculator AI, Cantian AI

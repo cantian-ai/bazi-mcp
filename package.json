@@ -1,10 +1,11 @@
 {
   "name": "bazi-mcp",
-  "version": "0.0.25",
+  "version": "0.1.0",
   "type": "module",
   "module": "./src/smithery.ts",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.1",
+    "@types/express": "^5.0.3",
     "@types/node": "^22.14.1",
     "typescript": "^5.8.3"
   },
@@ -26,7 +27,8 @@
   "scripts": {
     "tsc": "rm -rf dist && tsc",
     "prepublishOnly": "npm run tsc && chmod +x dist/stdio.js",
-    "smithery-dev": "npx @smithery/cli dev"
+    "smithery-dev": "npx @smithery/cli dev",
+    "start": "npm run tsc && node dist/httpServer.js"
   },
   "bin": {
     "bazi-mcp": "./dist/stdio.js"
@@ -36,6 +38,7 @@
     "cantian-tymext": "^0.0.21",
     "date-fns": "^3.6.0",
     "date-fns-tz": "^3.2.0",
+    "express": "^5.1.0",
     "tsx": "^4.20.5",
     "tyme4ts": "^1.3.4",
     "zod": "^3.24.3"
