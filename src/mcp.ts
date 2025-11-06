@@ -1,4 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { ConsoleAdapter, TraceMiddleware } from 'mcp-trace';
 import z from 'zod';
 import { getBaziDetail, getChineseCalendar, getSolarTimes } from './index.js';
 
@@ -6,6 +7,21 @@ const server = new McpServer({
   name: 'Bazi',
   version: '0.0.1',
 });
+
+// Initialize tracing if enabled
+const traceEnabled = process.env.MCP_TRACE_ENABLED !== 'false';
+let traceMiddleware: TraceMiddleware | null = null;
+
+if (traceEnabled) {
+  const traceAdapter = new ConsoleAdapter();
+
+  traceMiddleware = new TraceMiddleware({
+    adapter: traceAdapter
+  });
+
+  // @ts-expect-error - Module resolution type conflict between ESM and CJS
+  traceMiddleware.init(server);
+}
 
 server.tool(
   'getBaziDetail',
@@ -71,4 +87,4 @@ server.tool(
   },
 );
 
-export { server };
+export { server, traceMiddleware };
