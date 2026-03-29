@@ -453,3 +453,8 @@ npx -y @smithery/cli install @cantian-ai/bazi-mcp --client claude
 ```
 
 **Keywords**: Bazi MCP, Bazi AI Agent, Fengshui AI Agent, Bazi Calculator MCP, Bazi Calculator AI, Cantian AI
+
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/cantian-ai-bazi-mcp).
+
