@@ -1,6 +1,7 @@
 import { EightChar, LunarHour } from 'tyme4ts';
 import { buildBazi } from './lib/bazi.js';
 import { formatSolarTime, getSolarTime } from './lib/date.js';
+import { decideInferenceAction } from './lib/inferencePolicy.js';
 
 export { getChineseCalendar } from './lib/chineseCalendar.js';
 
@@ -32,4 +33,24 @@ export const getSolarTimes = async ({ bazi }) => {
   const solarTimes = new EightChar(year, month, day, hour).getSolarTimes(1700, new Date().getFullYear());
   const result = solarTimes.map((time) => formatSolarTime(time));
   return result;
+};
+
+export const getInferenceDecision = async (data: {
+  round: number;
+  totalQuestionsAsked: number;
+  askedPastQuestions?: number;
+  askedPresentQuestions?: number;
+  pastValidationScore?: number;
+  presentStateClarity?: number;
+  claims: Array<{ claimId: string; confidence: number; evidenceFromChart: boolean }>;
+  targetClaimIds?: string[];
+  candidateQuestions?: Array<{
+    questionId: string;
+    questionText: string;
+    claimIds: string[];
+    expectedConfidenceGain: number;
+    scope?: 'past' | 'present';
+  }>;
+}) => {
+  return decideInferenceAction(data);
 };

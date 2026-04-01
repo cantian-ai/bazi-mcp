@@ -77,6 +77,69 @@ npx -y @smithery/cli install @cantian-ai/bazi-mcp --client claude
 
 ## 工具列表 | Tools
 
+### getInferenceDecision
+
+> 用于防止“证据不足时硬结论”的策略工具，返回 `conclude`、`ask` 或 `abstain`。  
+> Policy tool for anti-hallucination decisioning: returns `conclude`, `ask`, or `abstain`.
+
+#### 参数 | Arguments
+
+- round: `Number`
+
+  > 当前问答轮次，从 1 开始。  
+  > Current validation round, starting from 1.
+
+- totalQuestionsAsked: `Number`
+
+  > 已提问总数（跨轮次累计）。  
+  > Total questions asked across rounds.
+
+- askedPastQuestions: `Number` (optional)
+
+  > 已问的“过去验证”问题数量。  
+  > Number of past-focused questions already asked.
+
+- askedPresentQuestions: `Number` (optional)
+
+  > 已问的“当前状态”问题数量。  
+  > Number of present-focused questions already asked.
+
+- pastValidationScore: `Number` (optional)
+
+  > 过去事件验证程度，范围 0~1。用于动态决定 past/present 问题配比。  
+  > Past validation score in 0~1. Used for dynamic past/present mix.
+
+- presentStateClarity: `Number` (optional)
+
+  > 当前状态清晰度，范围 0~1。  
+  > Current state clarity score in 0~1.
+
+- claims: `Array<{ claimId, confidence, evidenceFromChart }>`
+
+  > 当前候选结论。仅 `evidenceFromChart=true` 的结论允许被推进。  
+  > Candidate claims. Only `evidenceFromChart=true` claims are allowed for progression.
+
+- targetClaimIds: `String[]` (optional)
+
+  > 需要达到阈值才能输出结论的目标结论集合。  
+  > Claim IDs that must pass threshold before final conclusion.
+
+- candidateQuestions: `Array<{ questionId, questionText, claimIds, expectedConfidenceGain, scope }>` (optional)
+
+  > 可供选择的验证问题，按预估增益筛选。  
+  > Validation question candidates used for high-gain selection.
+  > `scope` 可选 `past` 或 `present`，用于自动配比。  
+  > Optional `scope` is `past` or `present` for dynamic mix.
+
+#### 返回关键字段 | Key response fields
+
+- action: `conclude | ask | abstain`
+- unresolvedClaimIds
+- concludedClaimIds
+- selectedQuestions
+- questionMix
+- limits
+
 ### getBaziDetail
 
 > 根据给定的公历或农历时间计算八字信息。

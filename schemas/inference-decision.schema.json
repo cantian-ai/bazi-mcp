@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/inference-decision.schema.json",
+  "title": "InferenceDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "action",
+    "threshold",
+    "unresolvedClaimIds",
+    "concludedClaimIds",
+    "selectedQuestions",
+    "questionMix",
+    "reason",
+    "limits"
+  ],
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["conclude", "ask", "abstain"]
+    },
+    "threshold": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "unresolvedClaimIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "concludedClaimIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "selectedQuestions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["questionId", "questionText", "claimIds", "expectedConfidenceGain"],
+        "properties": {
+          "questionId": { "type": "string" },
+          "questionText": { "type": "string" },
+          "scope": {
+            "type": "string",
+            "enum": ["past", "present"]
+          },
+          "claimIds": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "expectedConfidenceGain": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "questionMix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "scores", "targetTotals", "remainingTargets", "suggestedThisRound"],
+      "properties": {
+        "strategy": {
+          "type": "string",
+          "enum": ["past_heavy", "balanced", "present_heavy"]
+        },
+        "scores": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["pastValidationScore", "presentStateClarity"],
+          "properties": {
+            "pastValidationScore": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "presentStateClarity": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          }
+        },
+        "targetTotals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["past", "present"],
+          "properties": {
+            "past": { "type": "integer", "minimum": 0 },
+            "present": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "remainingTargets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["past", "present"],
+          "properties": {
+            "past": { "type": "integer", "minimum": 0 },
+            "present": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "suggestedThisRound": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["past", "present"],
+          "properties": {
+            "past": { "type": "integer", "minimum": 0 },
+            "present": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "reason": { "type": "string" },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxRounds", "maxQuestionsPerRound", "maxTotalQuestions"],
+      "properties": {
+        "maxRounds": { "type": "integer", "minimum": 1 },
+        "maxQuestionsPerRound": { "type": "integer", "minimum": 1 },
+        "maxTotalQuestions": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

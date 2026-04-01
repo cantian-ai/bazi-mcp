@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import z from 'zod';
-import { getBaziDetail, getChineseCalendar, getSolarTimes } from './index.js';
+import { getBaziDetail, getChineseCalendar, getInferenceDecision, getSolarTimes } from './index.js';
 
 const server = new McpServer({
   name: 'Bazi',
@@ -22,6 +22,68 @@ server.tool(
   },
   async (data) => {
     const result = await getBaziDetail(data);
+    return {
+      content: [
+        {
+          type: 'text',
+          text: JSON.stringify(result),
+        },
+      ],
+    };
+  },
+);
+
+server.tool(
+  'getInferenceDecision',
+  'Policy engine for anti-hallucination inference. It decides whether to conclude, ask high-value follow-up questions, or abstain.',
+  {
+    round: z.number().int().min(1).describe('Current validation round, starts from 1.'),
+    totalQuestionsAsked: z.number().int().min(0).describe('Total follow-up questions already asked across rounds.'),
+    askedPastQuestions: z.number().int().min(0).optional().describe('How many past-focused questions have been asked.'),
+    askedPresentQuestions: z
+      .number()
+      .int()
+      .min(0)
+      .optional()
+      .describe('How many present-focused questions have been asked.'),
+    pastValidationScore: z
+      .number()
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('How well the model already validated past hypotheses.'),
+    presentStateClarity: z
+      .number()
+      .min(0)
+      .max(1)
+      .optional()
+      .describe('How clear the current real-world context is.'),
+    claims: z
+      .array(
+        z.object({
+          claimId: z.string(),
+          confidence: z.number().min(0).max(1),
+          evidenceFromChart: z.boolean().describe('True only if claim has explicit chart evidence.'),
+        }),
+      )
+      .min(1)
+      .describe('Current inferred claims with confidence and chart-evidence flags.'),
+    targetClaimIds: z.array(z.string()).optional().describe('Claims that must reach threshold to allow conclusion.'),
+    candidateQuestions: z
+      .array(
+        z.object({
+          questionId: z.string(),
+          questionText: z.string(),
+          claimIds: z.array(z.string()).min(1).describe('Which claims this question can validate.'),
+          expectedConfidenceGain: z.number().min(0).max(1).describe('Estimated confidence gain after asking this question.'),
+          scope: z.enum(['past', 'present']).optional().describe('Question scope. Used by dynamic question mix logic.'),
+        }),
+      )
+      .optional()
+      .describe('Question candidates ranked by expected confidence gain.'),
+  },
+  async (data) => {
+    const result = await getInferenceDecision(data);
     return {
       content: [
         {
